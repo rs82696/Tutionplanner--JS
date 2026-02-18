@@ -85,10 +85,12 @@ top_match_explanation (mock AI generated)
 
 # Database Schema
 - This project uses SQLite via better-sqlite3. The schema is defined in:
-- src/db/schema.sql
+  
+  src/db/schema.sql
 
 - Database file (created locally):
-- dev.db
+  
+  dev.db
 
 ------------------------------------------------------------------------
 
