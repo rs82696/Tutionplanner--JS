@@ -83,6 +83,15 @@ top_match_explanation (mock AI generated)
 
 ------------------------------------------------------------------------
 
+# Database Schema
+This project uses SQLite via better-sqlite3. The schema is defined in:
+schema.sql
+
+Database file (created locally):
+dev.db
+
+------------------------------------------------------------------------
+
 # Design Decisions
 
 ## SQLite for Persistence
