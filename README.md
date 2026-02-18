@@ -1,6 +1,6 @@
 # TuitionPlanner -- Scholarship Matching API
 
-A Node.js + Express + SQLite application that matches students to
+A Javascript + Express + SQLite application that matches students to
 scholarships based on eligibility rules and generates a mock AI
 explanation for the top match.
 
@@ -31,11 +31,11 @@ explanation for the top match.
 
 # Setup Instructions
 
-## 1️⃣ Install Dependencies
+## Install Dependencies
 
 npm install
 
-## 2️⃣ Create Environment File
+## Create Environment File
 
 Create `.env` in project root:
 
