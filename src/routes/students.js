@@ -79,7 +79,14 @@ router.post("/", (req, res) => {
       updated_at: now
     });
 
-    return res.status(201).json({ id });
+    //return res.status(201).json({ id });
+        const created = db.prepare(`
+      SELECT id, name, email, created_at
+      FROM students
+      WHERE id = ?
+    `).get(id);
+
+    return res.status(201).json(created);
   } catch (e) {
     // common: unique email constraint
     return res.status(400).json({ error: e.message });
@@ -147,7 +154,12 @@ router.get("/:id/matches", (req, res) => {
     const explanation = topScholarship ? aiExplain(student, topScholarship, top.reasons) : null;
 
   res.json({
-    student_id: student.id,
+      student: {
+    id: student.id,
+    name: student.name,
+    email: student.email,
+    created_at: student.created_at
+  },
     match_count: matches.length,
     matches,
     top_match_explanation: explanation
@@ -155,3 +167,4 @@ router.get("/:id/matches", (req, res) => {
 });
 
 module.exports = router;
+
