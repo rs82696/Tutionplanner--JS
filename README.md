@@ -96,17 +96,17 @@ top_match_explanation (mock AI generated)
 
 # Design Decisions
 
-## SQLite for Persistence
+## SQLite + better-sqlite3
 
--   No external database setup required
--   Lightweight and ideal for evaluation
--   Persistent across restarts
+-   Chosen for simplicity and local persistence without additional services.
+-   Synchronous API keeps the code small and predictable for a take-home project.
 
-## better-sqlite3
+## Normalized scholarship eligibility tables
 
--   Simple synchronous API
--   Minimal boilerplate
--   Good performance for small datasets
+Scholarship eligibility contains arrays (citizenship, enrollment, fields-of-study, etc.). These are stored as normalized tables to:
+- avoid JSON querying complexity in SQLite,
+- support fast filtering and future indexing,
+- keep matching logic explicit and testable.
 
 ## Rule-Based Matching Engine
 
@@ -122,6 +122,13 @@ All required conditions must be satisfied.
 Chosen to keep project self-contained and reproducible. No external APIs
 required.
 
+- src/services/aiProvider.js routes to generateExplanation() when AI_PROVIDER=mock
+- This avoids external dependencies and keeps evaluation reproducible.
+  
+The mock explanation uses:
+
+- student + scholarship + top reasons
+- a short, human-readable summary suitable for UI display
 ------------------------------------------------------------------------
 
 # AI Option Chosen
